@@ -9,16 +9,20 @@ vs using numpy. My code uses for loop operation and it consumes more time as fol
 
 # Create 10,000 Pnew - Pold values using the same simulation process above. 
 # Store values in a Numpy array called p_diffs.
+```python
 p_diffs=[]
 for i in range(10000):
     new_page_converted = np.random.choice([1,0], size=n_new, p=[p_new,(1-p_new)]).mean()
     old_page_converted = np.random.choice([1,0], size=n_old, p=[p_old,(1-p_old)]).mean()
     diff= new_page_converted - old_page_converted
     p_diffs.append(diff)
+```    
 
 https://softwareengineering.stackexchange.com/questions/254475/how-do-i-move-away-from-the-for-loop-school-of-thought
 
 Fast code:
+```python
 new_converted_simulation = np.random.binomial(n_new, p_new, 10000)/n_new
 old_converted_simulation = np.random.binomial(n_old, p_old, 10000)/n_old
 p_diffs = new_converted_simulation - old_converted_simulation
+```
